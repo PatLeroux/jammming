@@ -1,20 +1,22 @@
+/****************************************/
+/** Reviewable project:  Jammming       */
+/** Component: SearchResults,js         */
+/****************************************/
 import React from 'react';
 import './SearchResults.css';
 import TrackList from '../TrackList/TrackList';
 
 class SearchResults extends React.Component {
-    constructor(props) {
-        super(props);
-
-    }
-
     render() {
         return(
             <div className="SearchResults">
                 <h2>Results</h2>
+                {console.log('from SearchResults = ' + this.props.onAdd)}
+
                 <TrackList 
                     tracks={this.props.searchResults} 
-                    onAdd={this.props.addTrack}
+                    onAdd={this.props.onAdd}
+                    onRemove={this.props.onRemove}
                     isRemoval={false}
                 />
             </div>            

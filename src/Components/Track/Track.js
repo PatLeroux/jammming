@@ -1,16 +1,28 @@
+/****************************************/
+/** Reviewable project:  Jammming       */
+/** Component:           Track.js       */
+/****************************************/
 import React from 'react';
 import './Track.css';
 
 class Track extends React.Component {
-    constructor(props) {
-        super(props);
-        this.renderAction = this.renderAction.bind(this);
+	constructor(props) {
+		super(props);
         this.addTrack = this.addTrack.bind(this);
-    }
+        this.removeTrack = this.removeTrack.bind(this);
+        this.renderAction = this.renderAction.bind(this);
+        this.playPreview = this.playPreview.bind(this);
+	}
+    
     addTrack() {
         this.props.onAdd(this.props.track);
 
     }
+
+    removeTrack() {
+		this.props.onRemove(this.props.track, true);
+    }
+    
     renderAction() {
 		if(this.props.isRemoval) {
 			this.removeTrack();
@@ -18,10 +30,17 @@ class Track extends React.Component {
 			this.addTrack();
 		}
     }
+
+	playPreview() {
+		window.open(this.props.preview);
+	}
+    
     render() {
         return (
             <div className="Track">
             <div className="Track-information">
+			{console.log('From Track = ' + this.props.onAdd)}
+
                 <h3>{this.props.name}</h3>
                 <p>{this.props.artist} | {this.props.album}</p>
             </div>
